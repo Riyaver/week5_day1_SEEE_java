@@ -1,0 +1,91 @@
+2)link:  https://www.hackerrank.com/contests/cse310-week5-day1-seee/challenges/week5-day1-ques2/problem
+
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution { 
+
+     public static int dupe(int a[], int n)
+     {  
+         if (n==0||n==1)
+         {  
+             return n;  
+         }    
+         int count=0;
+         for (int i=0; i<n-1; i++)
+         {  
+             if (a[i]!=a[i+1])
+             {  
+                 a[count++]=a[i];  
+             }  
+         }
+         a[count++]=a[n-1];  
+         return count;  
+}
+
+       
+    public static void main(String[] args) 
+    {
+       Scanner inp=new Scanner(System.in);
+       int n=inp.nextInt();
+       int[] a= new int[n];
+       if(n>5 && n<15)
+       {
+           for(int i=0;i<n;i++)
+           {
+               a[i]=inp.nextInt();
+           }
+           int s=inp.nextInt();
+           switch(s)
+           {
+               case 1:
+                    for (int i = 0; i < n; i++) 
+                    {     
+                       for (int j = i+1; j < n; j++) 
+                       {     
+                            if(a[i] > a[j]) 
+                          {    
+                            int temp = a[i];    
+                            a[i] = a[j];    
+                            a[j] = temp;   
+                          }     
+                       }     
+                     } 
+                     n = dupe(a, n); 
+                     for(int i=0;i<n;i++)
+                     {
+                         System.out.print(a[i]+" ");
+                     }
+                     break;
+              case 2:
+                    for (int i=0; i<n; i++) 
+                    {     
+                        for (int j=i+1; j<n; j++) 
+                        {     
+                            if(a[i]<a[j]) 
+                            {    
+                                int temp = a[i];    
+                                a[i] = a[j];    
+                                a[j] = temp;    
+                            }            
+                        }         
+                    } 
+                    n= dupe(a, n); 
+                    for(int i=0;i<n;i++)
+                    {
+                        System.out.print(a[i]+" ");
+                    }
+                    break;
+            }
+       }
+    else
+    {
+        System.out.println("Invalid");
+    }   
+    }
+}
